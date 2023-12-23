@@ -26,9 +26,9 @@ const FormLogin = () => {
 						label="Password"
 					/>
 				</div>
-				<div className="mt-3">
+				<div className="mt-3 border-b-2 pb-3">
 					<Button type="submit" className="block w-full">
-						Login
+						Login 
 					</Button>
 				</div>
 			</Form>
