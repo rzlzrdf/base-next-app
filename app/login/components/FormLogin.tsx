@@ -1,5 +1,4 @@
 'use client';
-import { useAuth } from '@/utils/AuthProvider';
 import { Button, Input } from '@nextui-org/react';
 import { Form, Formik } from 'formik';
 import React from 'react';
@@ -7,11 +6,10 @@ import React from 'react';
 export const initValuesLoginForm = { email: '', password: '' };
 
 const FormLogin = () => {
-	const { handlerLogin } = useAuth();
 	return (
 		<Formik
 			initialValues={initValuesLoginForm}
-			onSubmit={value => handlerLogin(value)}
+			onSubmit={value => console.log(value)}
 		>
 			{({ values, handleChange, handleSubmit }) => (
 				<Form onSubmit={handleSubmit}>

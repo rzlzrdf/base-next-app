@@ -1,39 +1,63 @@
 'use client';
-import { useAuth } from '@/utils/AuthProvider';
 import { Button } from '@nextui-org/react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { signIn, useSession } from 'next-auth/react';
 import React from 'react';
+import { Icon } from '@iconify/react';
+import Link from 'next/link';
 
 const Profie: React.FC = () => {
-	const { dataUser, setDataUser } = useAuth();
-	const navigateTo = useRouter();
-	const handlerLogout = () => {
-		setDataUser({});
-		navigateTo.push('/login');
-	};
-
-	console.log(dataUser);
+	const { status } = useSession();
 
 	return (
-		<div className="w-1/2 mt-5 gap-5">
-			{dataUser ? (
-				<div className="flex flex-col items-center gap-5">
-					<h1>Welcome, {dataUser && dataUser.email}</h1>
+		<>
+			{status === 'loading' && (
+				<Icon
+					icon="icon-park-outline:loading-three"
+					className="animate-spin text-3xl mt-10"
+				/>
+			)}
+			{status === 'authenticated' && (
+				<Link href="/dashboard">
 					<Button
-						className="w-fit px-5 bg-red-500 text-white"
-						variant="flat"
-						onClick={handlerLogout}
+						variant="bordered"
+						className="mt-10 bg-transparent text-white"
 					>
-						Logout
+						Dashboard <Icon icon="material-symbols:dashboard" />
 					</Button>
-				</div>
-			) : (
-				<Link href="/login" className="w-full block">
-					<Button className="w-full">Login</Button>
 				</Link>
 			)}
-		</div>
+			{status === 'unauthenticated' && (
+				<div
+					className="w-full lg:w-1/2 gap-5
+				 flex justify-center items-center mt-10"
+				>
+					<Button
+						onClick={() => signIn()}
+						variant="shadow"
+						className="w-1/2"
+					>
+						Login{' '}
+						<Icon
+							icon="material-symbols:login"
+							className="text-xl"
+						/>
+					</Button>
+					<div className='text-center'>||</div>
+					<Link
+						href="/register"
+						className="w-1/2 block bg-transparent text-white"
+					>
+						<Button
+							variant="ghost"
+							className="w-full text-white hover:text-black"
+						>
+							Register{' '}
+							<Icon icon="typcn:user-add" className="text-xl" />
+						</Button>
+					</Link>
+				</div>
+			)}
+		</>
 	);
 };
 
