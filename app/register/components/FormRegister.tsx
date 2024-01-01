@@ -36,6 +36,12 @@ const FormRegister: React.FC = () => {
 	const handlerRegister = (values: UserModelInterface) => {
 		if (values.password === values.repassword && values.agree) {
 			console.log(values);
+			fetch('/api/v1/collection/register', {
+				method: 'POST',
+				body: JSON.stringify(values),
+			})
+				.then(res => console.log(res))
+				.catch(err => console.log(err));
 		}
 	};
 
@@ -69,7 +75,6 @@ const FormRegister: React.FC = () => {
 								placeholder="example@mail.co"
 								className="my-2"
 								onChange={handleChange}
-								
 							/>
 						</div>
 						<div className="text-black min-h-[125px]">
@@ -139,7 +144,6 @@ const FormRegister: React.FC = () => {
 									placeholder="********"
 									className="my-2"
 									onChange={handleChange}
-									
 								/>
 								{!visibleRePass ? (
 									<Icon
