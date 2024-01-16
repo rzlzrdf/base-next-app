@@ -9,3 +9,14 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+<<<<<<< Updated upstream
+=======
+
+
+model User {
+  id            String @id @default(cuid())
+  
+  email         String @unique
+  passwordHash  String
+}
+>>>>>>> Stashed changes

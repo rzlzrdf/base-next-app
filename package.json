@@ -13,12 +13,19 @@
     "@nextui-org/react": "^2.2.9",
     "@prisma/client": "^5.7.1",
     "formik": "^2.4.5",
+    "jsonwebtoken": "^9.0.2",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+<<<<<<< Updated upstream
+=======
+    "@iconify/react": "^4.1.1",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.5",
+>>>>>>> Stashed changes
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
